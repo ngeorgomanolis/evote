@@ -57,10 +57,10 @@ API Documentation: SwaggerUI
 
 ## Microservices pattern
 Services:
--api
--ui
--db
--swagger-ui
+- api
+- ui
+- db
+- swagger-ui
 
 
 ## Improvements
