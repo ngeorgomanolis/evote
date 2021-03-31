@@ -39,7 +39,7 @@ services:
     build: 
       context: ./evote-api
       args:
-        - API_SWAGGER_URL=http://192.168.99.105 #For Swagger UI. Visit here: <API_SWAGGER_URL>:<API_SWAGGER_PORT>/<SWAGGER_PATH>
+        - API_SWAGGER_URL=http://192.168.99.108 #For Swagger UI. Visit here: <API_SWAGGER_URL>:<API_SWAGGER_PORT>/<SWAGGER_PATH>
         - API_SWAGGER_PORT=3001
         - SWAGGER_PATH=/docs 
     ports:
