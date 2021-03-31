@@ -40,6 +40,12 @@ docker-compose up -d --build
 docker ps
 ```
 
+5. URLs
+- UI: http://<HOST_URL>
+- API: http://<HOST_URL>:<HOST_URL_PORT>
+- Swagger: http://<HOST_URL>:<HOST_URL_PORT>/docs/
+- example: http://192.168.99.108:3001/docs/
+
 ## Build Setup API 
 
 Depends on DB. Make sure you have installed a version of PostgreSQL. Then create user, password and database. 
@@ -78,14 +84,12 @@ yarn test
 ```
 
 ## Stack Overview
-
-UI: VueJs
-- Tests: vuex-utils 
-API: NodeJs/ExpressJs
-- Tests: mocha, chai 
-Db: PostgreSQL
-Deployment: docker, docker-compose
-API Documentation: SwaggerUI
+- UI: VueJs
+- API: NodeJs/ExpressJs
+- Tests: mocha, chai, vuex-utils 
+- Db: PostgreSQL
+- Deployment: docker, docker-compose
+- API Documentation: SwaggerUI
 
 ## Microservices pattern
 Services:
