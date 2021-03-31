@@ -1,0 +1,48 @@
+version: '3'
+services:
+  db:
+    image: postgres:10-alpine
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      #- ./evote:/var/lib/postgresql/data //Enable that for data consistency
+      - ./scripts/evote.sql:/docker-entrypoint-initdb.d/evote.sql
+    environment:
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_USER=ovivo
+      - POSTGRES_DB=evote
+  ui:
+    image: evote_ui:1.0.0
+    restart: always
+    build: 
+      context: ./evote-ui
+      args: 
+        - API_URL=http://192.168.99.105 #URL for API. Must match your Host Ip, Hostname etc. E.g. http://192.168.99.104
+        - API_PORT=3001
+    ports:
+        - '80:80'
+    depends_on:
+        - api
+  swagger-ui:
+    image: swaggerapi/swagger-ui:latest
+    restart: always
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./swagger:/usr/share/nginx/html/swagger
+    environment:
+      API_URL: swagger/swagger.yaml
+  api:
+    image: evote_api:1.0.0
+    restart: always
+    build: 
+      context: ./evote-api
+      args:
+        - API_SWAGGER_URL=http://192.168.99.105 #For Swagger UI. Visit here: <API_SWAGGER_URL>:<API_SWAGGER_PORT>/<SWAGGER_PATH>
+        - API_SWAGGER_PORT=3001
+        - SWAGGER_PATH=/docs 
+    ports:
+        - '3001:3001'
+    depends_on:
+        - db
