@@ -4,6 +4,14 @@ The app allow users to register and vote for candidates.
 
 You can find the rules here: https://github.com/ngeorgomanolis/evote/blob/master/evote-requirements.png
 
+## Stack Overview
+- UI: VueJs
+- API: NodeJs/ExpressJs
+- Tests: mocha, chai, vuex-utils 
+- Db: PostgreSQL
+- Deployment: docker, docker-compose
+- API Documentation: SwaggerUI
+
 ## Build with docker-compose in production (recommended)
 
 1. Follow the instructions below for production build.
@@ -26,13 +34,11 @@ tcp://192.168.99.105:2376
 docker-machine start (or stop) evote
 ``` 
 
-2. Replace BASE_ENDPOINT url: 
-- https://github.com/ngeorgomanolis/evote/blob/master/evote-ui/config/prod.env.js
-3. Replace API_SWAGGER_URL url:
-- https://github.com/ngeorgomanolis/evote/blob/master/docker-compose.yml
+2. Replace host: evote-api/config.js
+3. Replace BASE_ENDPOINT url: evote-ui/config/prod.env.js
+4. Replace API_SWAGGER_URL url: docker-compose.yml
 
-
-4. Navigate to the project folder and run:
+5. Navigate to the project folder and run:
 ``` bash
 #make sure docker and docker-compose are installed. Build images (--build) and run in background (-d) and wait...
 docker-compose up -d --build
@@ -83,14 +89,6 @@ yarn run build --report
 yarn test
 ```
 
-## Stack Overview
-- UI: VueJs
-- API: NodeJs/ExpressJs
-- Tests: mocha, chai, vuex-utils 
-- Db: PostgreSQL
-- Deployment: docker, docker-compose
-- API Documentation: SwaggerUI
-
 ## Microservices pattern
 Services:
 - api
@@ -100,6 +98,7 @@ Services:
 
 
 ## Improvements
+- set all URLs in docker-compose to avoid duplications. 
 - remove swagger-autogen
 - openapi and speccy to resolve endpoints .yaml and expose swagger.yaml 
 - env variables and git secret to hide sensitive info
