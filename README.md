@@ -4,15 +4,35 @@ The app allow users to register and vote for candidates.
 
 You can find the rules here: https://github.com/ngeorgomanolis/evote/blob/master/evote-requirements.png
 
-## Build with docker-compose
+## Build with docker-compose (recommended)
+
+Instructions for Mac
 ``` bash
-#first make sure docker and docker-compose are installed. Build images (--build) and run in background (-d) 
+#Create machine evote
+docker-machine create --driver virtualbox evote
+#Connect your shell to the new machine.
+eval "$(docker-machine env evote)"
+#start/stop machine
+docker-machine start (or stop) evote
+#list machines
+docker-machine ls 
+#get the url of your machine (we need the ip). for example
+tcp://192.168.99.108:2376 
+#For Linux machines: localhost
+``` 
+Then run: 
+``` bash
+#make sure docker and docker-compose are installed. Build images (--build) and run in background (-d) 
 docker-compose up -d --build
 #list running services
 docker ps
 ```
 
-## Build Setup API
+## Build Setup API 
+
+Depends on DB. Make sure you have installed a version of PostgreSQL. Then create user, password and database. 
+db service example: https://github.com/ngeorgomanolis/evote/blob/master/docker-compose.yml
+
 ``` bash
 # install dependencies
 npm install
@@ -57,10 +77,10 @@ API Documentation: SwaggerUI
 
 ## Microservices pattern
 Services:
--api
--ui
--db
--swagger-ui
+- api
+- ui
+- db
+- swagger-ui
 
 
 ## Improvements
