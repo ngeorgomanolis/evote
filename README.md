@@ -47,13 +47,13 @@ yarn test
 
 ## Stack Overview
 
-UI: VueJs
-- Tests: vuex-utils 
-API: NodeJs/ExpressJs
-- Tests: mocha, chai 
-Db: PostgreSQL
-Deployment: docker, docker-compose
-API Documentation: SwaggerUI
+- UI: VueJs
+- API: NodeJs/ExpressJs  
+- Db: PostgreSQL
+- Tests: vuex-utils, mocha, chai
+- Deployment: docker, docker-compose
+- API Documentation: SwaggerUI
+
 
 ## Microservices pattern
 Services:
