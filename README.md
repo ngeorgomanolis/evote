@@ -8,7 +8,7 @@ You can find the rules here: https://github.com/ngeorgomanolis/evote/blob/master
 
 1. Follow the instructions below for production build.
 
-Instructions MAC ONLY 
+Instructions MAC. For Linux find you host IP directly. 
 ``` bash
 #Create machine evote
 docker-machine create --driver virtualbox evote
@@ -26,14 +26,13 @@ tcp://192.168.99.105:2376
 docker-machine start (or stop) evote
 ``` 
 
-Instructions Linux. Find you host IP directly.
+2. Replace BASE_ENDPOINT url: 
+- https://github.com/ngeorgomanolis/evote/blob/master/evote-ui/config/prod.env.js
+3. Replace API_SWAGGER_URL url:
+- https://github.com/ngeorgomanolis/evote/blob/master/docker-compose.yml
 
-2. Replace BASE_ENDPOINT_URL:
-https://github.com/ngeorgomanolis/evote/blob/master/evote-ui/config/prod.env.js
-https://github.com/ngeorgomanolis/evote/blob/master/docker-compose.yml
 
-
-3. Navigate to the project folder and run:
+4. Navigate to the project folder and run:
 ``` bash
 #make sure docker and docker-compose are installed. Build images (--build) and run in background (-d) and wait...
 docker-compose up -d --build
