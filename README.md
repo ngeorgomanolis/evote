@@ -2,17 +2,15 @@
 
 The app allow users to register and vote for candidates. 
 
-You can find the rules here https://github.com/ngeorgomanolis/evote/blob/master/evote-requirements.png
-
+You can find the rules here: https://github.com/ngeorgomanolis/evote/blob/master/evote-requirements.png
 
 ## Build with docker-compose
 ``` bash
-#first make sure docker and docker-compose are installed. Run in background (-d)
+#first make sure docker and docker-compose are installed. Build images (--build) and run in background (-d) 
 docker-compose up -d --build
 #list running services
 docker ps
 ```
-
 
 ## Build Setup API
 ``` bash
@@ -29,7 +27,7 @@ npm run prod
 npm run test
 ```
 
-## Build Setup API
+## Build Setup UI
 ``` bash
 # install dependencies
 yarn install
@@ -47,7 +45,8 @@ yarn run build --report
 yarn test
 ```
 
-> Stack
+## Stack Overview
+
 UI: VueJs
 - Tests: vuex-utils 
 API: NodeJs/ExpressJs
@@ -56,6 +55,16 @@ Db: PostgreSQL
 Deployment: docker, docker-compose
 API Documentation: SwaggerUI
 
+## Microservices pattern
+Services:
+-api
+-ui
+-db
+-swagger-ui
 
 
+## Improvements
+- remove swagger-autogen
+- openapi and speccy to resolve endpoints .yaml and expose swagger.yaml 
+- env variables and git secret to hide sensitive info
 
