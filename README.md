@@ -20,7 +20,7 @@ docker-machine ls
 tcp://192.168.99.108:2376 
 #For Linux machines: localhost
 ``` 
-Then run: 
+In docker-compose replace db credentials, api urls and then run: 
 ``` bash
 #make sure docker and docker-compose are installed. Build images (--build) and run in background (-d) 
 docker-compose up -d --build
