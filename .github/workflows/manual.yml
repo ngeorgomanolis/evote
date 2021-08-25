@@ -25,10 +25,6 @@ jobs:
       packages: write 
     steps:
       # Runs a single command using the runners shell
-      - name: Print branch
-        run: echo "Hello ${{ github.event.inputs.branch }}"
-      - name: Print tag
-        run: echo "Hello ${{ github.event.inputs.tags }}"
       - uses: actions/checkout@v2
       # Setup .npmrc file to publish to GitHub Packages
       - uses: actions/setup-node@v2

@@ -1,7 +1,7 @@
 {
-  "name": "evote_api",
-  "version": "1.0.0",
-  "private": true,
+  "name": "@ngeorgomanolis/evote_api",
+  "version": "1.0.1",
+  "private": false,
   "scripts": {
     "start": "npm install && NODE_ENV=development API_SWAGGER_URL=http://localhost API_SWAGGER_PORT=3001 SWAGGER_PATH=/docs nodemon ./bin/www",
     "prod": "npm install && NODE_ENV=production node ./bin/www",
@@ -9,6 +9,13 @@
     "clean": "rm -rf ./dist && mkdir dist",
     "test": "mocha --timeout 10000",
     "docs": "node swagger.js"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ngeorgomanolis/evote.git"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
