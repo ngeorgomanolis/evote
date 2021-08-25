@@ -8,7 +8,7 @@ on:
       #  required: true
       #  default: 'master'
       tags:
-        description: 'Release tag'
+        description: 'Release tag - It will override the package.json version field'
 
 jobs:
   build:
@@ -20,6 +20,12 @@ jobs:
       contents: read
       packages: write 
     steps:
+      - name: Get tag version from input and update package.json
+        if: ${{ github.event.inputs.tags != '' }}
+        run: |
+          echo "Tags: ${{ github.event.inputs.tags }}" 
+          npm version ${{ github.event.inputs.tags }}
+        
       # Runs a single command using the runners shell
       - uses: actions/checkout@v2
       # Setup .npmrc file to publish to GitHub Packages
