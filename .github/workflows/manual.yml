@@ -20,13 +20,7 @@ jobs:
       contents: read
       packages: write 
     steps:
-      - name: Get tag version from input and update package.json
-        if: ${{ github.event.inputs.tags != '' }}
-        run: |
-          echo "Tags: ${{ github.event.inputs.tags }}" 
-          npm version ${{ github.event.inputs.tags }}
-        
-      # Runs a single command using the runners shell
+       # Runs a single command using the runners shell
       - uses: actions/checkout@v2
       # Setup .npmrc file to publish to GitHub Packages
       - uses: actions/setup-node@v2
@@ -35,6 +29,12 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
           # Defaults to the user or organization that owns the workflow file
           scope: '@ngeorgomanolis'
+      - name: Get tag version from input and update package.json
+        if: ${{ github.event.inputs.tags != '' }}
+        run: |
+          echo "Tags: ${{ github.event.inputs.tags }}" 
+          npm version ${{ github.event.inputs.tags }}
+        
       - run: npm install
       - run: npm publish
         env:
