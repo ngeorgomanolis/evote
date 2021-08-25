@@ -3,14 +3,10 @@ name: Node.js Package
 on:
   workflow_dispatch:
     inputs:
-      'branch/commit/sha/ref':
-        description: 'Define branch/commit/sha/ref to use as a basis for publishing'     
-        required: true
-        default: 'master'
-      branch:
-        description: 'Define branch name'     
-        required: true
-        default: 'master'
+      #'branch/commit/sha/ref':
+      ##  description: 'Define branch/commit/sha/ref to use as a basis for publishing'     
+      #  required: true
+      #  default: 'master'
       tags:
         description: 'Release tag'
 
