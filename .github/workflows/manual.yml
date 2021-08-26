@@ -24,7 +24,9 @@ jobs:
     steps:
       - name: 'Checking branch ..'
         if: github.ref != 'refs/heads/master'
-        run: exit
+        run: |
+          echo 'HELLO EXIT'
+          exit
       - name: 'Checking out branch/commit/sha/ref'
         uses: actions/checkout@v2
         with:
