@@ -25,6 +25,8 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.event.inputs.chk }}
+        if: failed()
+        run: echo 'Please check branch/commit/sha/ref again.'
       - uses: actions/setup-node@v2
         with:
           node-version: "14.17.3"
