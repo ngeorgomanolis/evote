@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       #'branch/commit/sha/ref':
-      ##  description: 'Define branch/commit/sha/ref to use as a basis for publishing'     
+      #  description: 'Define branch/commit/sha/ref to use as a basis for publishing'     
       #  required: true
       #  default: 'master'
       tags:
@@ -12,22 +12,24 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     defaults:
       run:
         working-directory: ./evote-api
     permissions: 
       contents: read
       packages: write
+    #Run the workflow only for master branch otherwise skip 
     if: github.ref == 'refs/heads/master'
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout the git branch
+        uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
-          node-version: '12.x'
+          node-version: "14.17.3"
           registry-url: 'https://npm.pkg.github.com'
           # Defaults to the user or organization that owns the workflow file
-          scope: '@ngeorgomanolis'
+          scope: '@pfizer'
       - name: Get tag version from input and update package.json
         if: ${{ github.event.inputs.tags != '' }}
         run: |
@@ -38,3 +40,4 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
+
