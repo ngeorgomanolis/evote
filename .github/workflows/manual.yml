@@ -17,15 +17,12 @@ jobs:
     permissions: 
       contents: read
       packages: write
-    #Run the workflow only for master branch otherwise skip 
-    #if: github.ref == 'refs/heads/master'
-    #run: exit 1
     #if: startsWith(github.event.ref, 'refs/tags')
     steps:
       - name: 'Checking branch ..'
         if: github.ref != 'refs/heads/master'
         run: |
-          echo 'HELLO EXIT'
+          echo "You are trying to run the workflow on ${{ github.ref }}; use master instead"
           exit
       - name: 'Checking out branch/commit/sha/ref'
         uses: actions/checkout@v2
