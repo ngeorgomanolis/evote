@@ -17,13 +17,11 @@ jobs:
     permissions: 
       contents: read
       packages: write
+    #Run the workflow only for master branch otherwise skip 
+    #if: github.ref == 'refs/heads/master'
+    #run: exit 1
+    #if: startsWith(github.event.ref, 'refs/tags')
     steps:
-       #Run the workflow only for master branch otherwise skip 
-      - name: Running workflow
-        if: github.ref == 'refs/heads/master'
-        run: | 
-          echo "You are trying to run the workflow on : ${{ github.ref }}; please use the main branch instead"
-          exit 1
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.event.inputs.chk }}
