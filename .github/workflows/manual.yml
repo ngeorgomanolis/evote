@@ -22,6 +22,9 @@ jobs:
     #run: exit 1
     #if: startsWith(github.event.ref, 'refs/tags')
     steps:
+      - name: 'Checking branch ..'
+        if: github.ref != 'refs/heads/master'
+        run: exit
       - name: 'Checking out branch/commit/sha/ref'
         uses: actions/checkout@v2
         with:
@@ -33,7 +36,7 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
           # Defaults to the user or organization that owns the workflow file
           scope: '@ngeorgomanolis'
-      - name: Get tag version from input and update package.json
+      - name: Getting tag version from workflow input and update package.json
         if: ${{ github.event.inputs.tags != '' && github.event.inputs.chk == '' }}
         run: |
           echo "Tag: ${{ github.event.inputs.tags }}. Updating package.json..."
