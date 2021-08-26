@@ -1,12 +1,14 @@
-name: Node.js Package
+name: Publish shared worker
 
 on:
   workflow_dispatch:
     inputs:
       chk:
-        description: 'Define branch/commit/sha/ref to use as a basis for publishing'
+        description: 'Define branch/commit/sha/ref to use as a basis for publishing.'
+        required: false
+        default: mainline
       tags:
-        description: 'New release tag - If given it will override the package.json version field'
+        description: 'New release tag - If given it will override the package.json version field.'
 
 jobs:
   build:
@@ -19,23 +21,22 @@ jobs:
       packages: write
     #if: startsWith(github.event.ref, 'refs/tags')
     steps:
-      - name: 'Checking branch ..'
+      - name: Checking branch...
         if: github.ref != 'refs/heads/master'
         run: |
           echo "You are trying to run the workflow on ${{ github.ref }}; use master instead"
           exit
-      - name: 'Checking out branch/commit/sha/ref'
+      - name: Checking out branch/commit/sha/ref
         uses: actions/checkout@v2
         with:
           ref: ${{ github.event.inputs.chk }}
-      - name: 'Setting up Node env'
+      - name: Setting up Node env, registry and scope
         uses: actions/setup-node@v2
         with:
           node-version: "14.17.3"
           registry-url: 'https://npm.pkg.github.com'
-          # Defaults to the user or organization that owns the workflow file
-          scope: '@ngeorgomanolis'
-      - name: Getting tag version from workflow input and update package.json
+          scope: '@pfizer'
+      - name: Checking Tag input to update package.json version
         if: ${{ github.event.inputs.tags != '' && github.event.inputs.chk == '' }}
         run: |
           echo "Tag: ${{ github.event.inputs.tags }}. Updating package.json..."
