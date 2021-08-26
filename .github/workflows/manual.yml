@@ -6,7 +6,7 @@ on:
       chk:
         description: 'Define branch/commit/sha/ref to use as a basis for publishing'
       tags:
-        description: 'Release tag - If given it will override the package.json version field'
+        description: 'New release tag - If given it will override the package.json version field'
 
 jobs:
   build:
@@ -26,14 +26,15 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: ${{ github.event.inputs.chk }}
-      - uses: actions/setup-node@v2
+      - name: 'Setting up Node env'
+        uses: actions/setup-node@v2
         with:
           node-version: "14.17.3"
           registry-url: 'https://npm.pkg.github.com'
           # Defaults to the user or organization that owns the workflow file
           scope: '@ngeorgomanolis'
       - name: Get tag version from input and update package.json
-        if: ${{ github.event.inputs.tags != '' }}
+        if: ${{ github.event.inputs.tags != '' && github.event.inputs.chk == '' }}
         run: |
           echo "Tag: ${{ github.event.inputs.tags }}. Updating package.json..."
           npm version ${{ github.event.inputs.tags }}
