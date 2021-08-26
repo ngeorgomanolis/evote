@@ -19,7 +19,9 @@ jobs:
       packages: write
     #Run the workflow only for master branch otherwise skip 
     if: github.ref == 'refs/heads/master'
-    run: exit 1
+    run: | 
+      echo "You are trying to run the workflow on : ${{ github.ref }}; please use the main branch instead"
+      exit 1
     steps:
       - uses: actions/checkout@v2
         with:
