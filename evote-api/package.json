@@ -1,6 +1,6 @@
 {
   "name": "@ngeorgomanolis/evote_api",
-  "version": "1.0.2",
+  "version": "1.0.0",
   "private": false,
   "scripts": {
     "start": "npm install && NODE_ENV=development API_SWAGGER_URL=http://localhost API_SWAGGER_PORT=3001 SWAGGER_PATH=/docs nodemon ./bin/www",
