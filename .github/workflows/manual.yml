@@ -19,6 +19,7 @@ jobs:
       packages: write
     #Run the workflow only for master branch otherwise skip 
     if: github.ref == 'refs/heads/master'
+    run: exit 1
     steps:
       - uses: actions/checkout@v2
         with:
