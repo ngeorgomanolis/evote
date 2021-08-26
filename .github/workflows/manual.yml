@@ -22,11 +22,10 @@ jobs:
     #run: exit 1
     #if: startsWith(github.event.ref, 'refs/tags')
     steps:
-      - uses: actions/checkout@v2
-        with:
-          ref: ${{ github.event.inputs.chk }}
-        if: failed()
-        run: echo 'Please check branch/commit/sha/ref again.'
+      - name: 'Checking out branch/commit/sha/ref'
+        uses: actions/checkout@v2
+          with:
+            ref: ${{ github.event.inputs.chk }}
       - uses: actions/setup-node@v2
         with:
           node-version: "14.17.3"
