@@ -46,6 +46,7 @@ jobs:
           path: './'
       - name: Showing contents in workflow
         run: |
+          echo 'Showing contents..'
           ls -lr
           cat workflows.txt
         env:
