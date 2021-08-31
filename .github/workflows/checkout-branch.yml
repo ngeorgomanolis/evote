@@ -43,12 +43,12 @@ jobs:
         uses: actions/checkout@main
         with:
           repository: ngeorgomanolis/workflows
-          path: './'
+          path: './examples'
       - name: Running newman examples/sample-collection.json
         run: |
           echo 'Showing contents..'
           ls -lr
-          newman run examples/sample-collection.json
+          newman run ./sample-collection.json
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
