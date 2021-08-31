@@ -6,9 +6,9 @@ on:
       chk:
         description: 'Define branch/commit/sha/ref to use as a basis for publishing.'
         required: false
-        default: mainline
       tags:
-        description: 'New release tag - If given it will override the package.json version field.'
+        description: 'New release tag - If given it will override the package.json version field. branch/commit/sha/ref input should be empty.'
+        required: false
 
 jobs:
   build:
@@ -37,7 +37,7 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
           scope: '@pfizer'
       - name: Checking Tag input to update package.json version
-        if: ${{ github.event.inputs.tags != '' && github.event.inputs.chk == '' }}
+        if: github.event.inputs.tags != '' && github.event.inputs.chk == ''
         run: |
           echo "Tag: ${{ github.event.inputs.tags }}. Updating package.json..."
           npm version ${{ github.event.inputs.tags }}

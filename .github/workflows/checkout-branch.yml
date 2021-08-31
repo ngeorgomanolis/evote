@@ -1,0 +1,54 @@
+name: Checkout workflow branch
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          lfs: true
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@pfizer'
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.6.9'
+      - name: install newman
+        run: npm install -g newman
+      - name: install aws-sam-cli
+        run: pip install aws-sam-cli
+      - name: install aws
+        run: pip install aws
+      - name: install setuptools
+        run: pip3 install -I -U setuptools
+      #- name: install dependencies
+      #  run: pip3 install -r requirements.txt
+      #- name: install dev dependencies
+      #  run: pip3 install -r requirements-dev.txt
+      #- name: run API tests
+      #  run: make local.up
+      - name: Checking out branch in evote repository
+        uses: actions/checkout@v2
+      - name: Showing contents in evote
+        run: |
+          echo "Checked out branch.. Showing files"
+          ls -lr
+      - name: Checking out main branch in workflow repository
+        uses: actions/checkout@main
+        with:
+          repository: ngeorgomanolis/workflows
+          path: './'
+      - name: Showing contents in workflow
+        run: |
+          ls -lr
+          cat workflows.txt
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
+
