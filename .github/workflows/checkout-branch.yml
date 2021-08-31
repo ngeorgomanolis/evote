@@ -44,11 +44,11 @@ jobs:
         with:
           repository: ngeorgomanolis/workflows
           path: './'
-      - name: Running newman examples/sample-collection.json
+      - name: Running newman examples/sample-collections.json
         run: |
           echo 'Showing contents..'
           ls -lr
-          cd examples && newman run sample-collection.json
+          cd examples && newman run sample-collections.json
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
