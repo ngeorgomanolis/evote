@@ -14,7 +14,6 @@ jobs:
     steps:
       - name: Checking vars
         run: | 
-          "github.event.action" : ${{ github.event.action }}. 
           "github.event.pull_request.merged" : ${{ github.event.pull_request.merged }}. 
 
       - name: Checkout the git branch
