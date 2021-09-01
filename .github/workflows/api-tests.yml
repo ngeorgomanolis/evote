@@ -24,9 +24,6 @@ jobs:
           lfs: false
       - name: Listing files/folders
         run: ls -lr
-      #- uses: actions/setup-node@v2.1.5
-      #  with:
-      #    node-version: "14.17.3"
       - name: Upload tests/postman/env/local.json
         uses: actions/upload-artifact@v2.2.3
         with:
@@ -51,10 +48,10 @@ jobs:
         run: npm install -g newman
       - name: Checking out main branch in workflow repository
         uses: actions/checkout@v2
-        with:
-          repository: ngeorgomanolis/workflows
-          path: './'
-          token: ${{ secrets.GITHUB_TOKEN }}
+        #with:
+        #  repository: ngeorgomanolis/workflows
+        #  path: './'
+        #  token: ${{ secrets.GITHUB_TOKEN }}
           #ref: ${{ github.head_ref }}
       - name: Download local_env
         uses: actions/download-artifact@v2.0.9

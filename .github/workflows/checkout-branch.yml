@@ -1,6 +1,14 @@
 name: Checkout workflow branch
 
-on: [push]
+on:
+  workflow_dispatch:
+    inputs:
+      chk:
+        description: 'Define branch/commit/sha/ref to use as a basis for publishing.'
+        required: false
+      tags:
+        description: 'New release tag - If given it will override the package.json version field. branch/commit/sha/ref input should be empty.'
+        required: false
 
 jobs:
   build:
