@@ -12,10 +12,8 @@ jobs:
     name: Get local env from ng-auth repo
     runs-on: ubuntu-20.04
     steps:
-      - name: Checking vars
-        run: | 
-          "github.event.pull_request.merged" : ${{ github.event.pull_request.merged }}. 
-
+      - run: echo "event name is:" ${{ github.event_name }} 
+      - run: echo "event type is:" ${{ github.event.action }}
       - name: Checkout the git branch
         uses: actions/checkout@v2.3.4
         with:
