@@ -14,9 +14,9 @@ jobs:
     steps:
       - name: Checking vars
         run: | 
-          "github.event_name: ${{ github.event_name }}. 
-          "github.event.action: ${{ github.event.action }}. 
-          "github.event.pull_request.merged: ${{ github.event.pull_request.merged }}. 
+          "github.event_name" : ${{ github.event_name }}. 
+          "github.event.action" : ${{ github.event.action }}. 
+          "github.event.pull_request.merged" : ${{ github.event.pull_request.merged }}. 
 
       - name: Checkout the git branch
         uses: actions/checkout@v2.3.4
