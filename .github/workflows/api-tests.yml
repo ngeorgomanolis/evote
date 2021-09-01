@@ -1,14 +1,14 @@
 name: API tests router
 
 on:
-  workflow_dispatch:
-    inputs:
-      chk:
-        description: 'Define branch/commit/sha/ref to use as a basis for publishing.'
-        required: false
+  pull_request:
+    branches: 
+      - main
+    types: [closed]
 
 jobs:
   get-env:
+    if: ${{ github.event.pull_request.merged }}
     name: Get local env from ng-auth repo
     runs-on: ubuntu-20.04
     steps:
