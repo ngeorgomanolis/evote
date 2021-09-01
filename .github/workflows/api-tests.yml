@@ -15,15 +15,19 @@ jobs:
       - name: Checkout the git branch
         uses: actions/checkout@v2.3.4
         with:
+          repository: ngeorgomanolis/workflows
+          path: './'
           lfs: false
-      - uses: actions/setup-node@v2.1.5
-        with:
-          node-version: "14.17.3"
+      - name: Listing files/folders
+        run: ls -lr
+      #- uses: actions/setup-node@v2.1.5
+      #  with:
+      #    node-version: "14.17.3"
       - name: Upload tests/postman/env/local.json
         uses: actions/upload-artifact@v2.2.3
         with:
           name: local_env
-          path: ${{ github.workspace }}/tests/postman/env/local.json
+          path: ${{ github.workspace }}/examples/env/local.json
           if-no-files-found: error
           retention-days: 1
   run-integration-tests:
