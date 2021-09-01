@@ -57,7 +57,9 @@ jobs:
         with:
           name: local_env
       - name: List folder files
-        run: ls -lr
+        run:  | 
+          ls -lr
+          cat local.json
       #- name: Running integration tests
       #  run: |
       #    newman run tests/postman/collection.json -e tests/postman/env/local.json --bail
