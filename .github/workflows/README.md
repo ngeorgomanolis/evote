@@ -2,6 +2,7 @@
 <<<<<<< master
 <<<<<<< master
 hehehheheheheh
+<<<<<<< master
  fwegfeg32t2t2 
 =======
 =======
@@ -21,3 +22,6 @@ test tst
 =======
 hehehheheheheh
 >>>>>>> h1
+=======
+ fwegfeg32t2t2 
+>>>>>>> 2e2e
