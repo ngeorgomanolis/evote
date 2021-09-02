@@ -8,29 +8,12 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-        with:
-          lfs: true
-      - name: Setup Node
-        uses: actions/setup-node@v1
-        with:
-          node-version: '14.x'
-          registry-url: 'https://npm.pkg.github.com'
-          scope: '@ngeorgomanolis'
-      - name: install newman
-        run: npm install -g newman
       - name: Checkout the git branch
         uses: actions/checkout@v2.3.4
         with:
           repository: ngeorgomanolis/workflows
-          path: './'
+          path: './examples/env/local.json'
           lfs: false
-      - name: copy from workflow branch to main
-        run: | 
-          pwd
-          cp ./examples/env/local.json .
-          cp ./examples/env/local.json ${{ github.workspace }} 
-      - name: Checkout the git branch
-        uses: actions/checkout@v2.3.4    
       - name: List folder files
         run:  | 
           ls -lr
