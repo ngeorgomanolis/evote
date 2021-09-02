@@ -5,7 +5,6 @@ on: [push]
 
 jobs:
   run-integration-tests:
-    needs: get-env
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
