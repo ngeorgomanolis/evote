@@ -18,6 +18,7 @@ jobs:
         run: | 
           ls -lr
           cp examples/env/local.json .
+      - uses: actions/checkout@v2
       - name: List folder files
         run:  | 
           ls -lr
