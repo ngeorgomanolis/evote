@@ -60,6 +60,9 @@ jobs:
           echo "github.workspace " ${{ github.workspace }} 
           cp ./examples/env/local.json ${{ github.workspace }} 
           ls -lr
+          echo "github.workspace " ${{ github.workspace }} 
+          cp ./examples/env/local.json ${{ github.workspace }} 
+          ls -lr
           echo "github.workspace " ${{ github.workspace }}
           cd ${{ github.workspace }} 
           ls -lr
