@@ -56,8 +56,12 @@ jobs:
         run: | 
           pwd
           cp ./examples/env/local.json .
+          cp ./examples/env/local.json ${{ github.workspace }} 
           ls -lr
           echo "github.workspace " ${{ github.workspace }} 
+          cat  ${{ github.workspace }}/docker-compose.yml
+          cd ${{ github.workspace }} 
+          ls -lr
       - name: List folder files
         run:  | 
           ls -lr
