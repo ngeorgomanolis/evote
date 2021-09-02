@@ -56,11 +56,8 @@ jobs:
         run: | 
           pwd
           cp ./examples/env/local.json .
-      #- name: Download local_env
-      #  uses: actions/download-artifact@v2.0.9
-      #  with:
-      #    name: local_env
-      - uses: actions/checkout@v2
+          ls -lr
+          echo "github.workspace " ${{ github.workspace }} 
       - name: List folder files
         run:  | 
           ls -lr
