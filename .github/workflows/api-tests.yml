@@ -60,10 +60,10 @@ jobs:
           echo "github.workspace " ${{ github.workspace }} 
           cp ./examples/env/local.json ${{ github.workspace }} 
           ls -lr
-          echo "github.workspace " ${{ github.workspace }} 
-          cat  ${{ github.workspace }}/docker-compose.yml
+          echo "github.workspace " ${{ github.workspace }}
           cd ${{ github.workspace }} 
           ls -lr
+          cat  ${{ github.workspace }}/docker-compose.yml          
       - name: List folder files
         run:  | 
           ls -lr
