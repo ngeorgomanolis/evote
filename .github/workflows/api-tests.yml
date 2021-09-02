@@ -28,7 +28,7 @@ jobs:
         uses: actions/upload-artifact@v2.2.3
         with:
           name: local_env
-          path: ${{ github.workspace }}/examples/env/local.json
+          path: examples/env/local.json
           if-no-files-found: error
           retention-days: 1
   run-integration-tests:
@@ -43,16 +43,11 @@ jobs:
         with:
           node-version: '14.x'
           registry-url: 'https://npm.pkg.github.com'
-          scope: '@pfizer'
+          scope: '@ngeorgomanolis'
       - name: install newman
         run: npm install -g newman
       - name: Checking out main branch in workflow repository
         uses: actions/checkout@v2
-        #with:
-        #  repository: ngeorgomanolis/workflows
-        #  path: './'
-        #  token: ${{ secrets.GITHUB_TOKEN }}
-          #ref: ${{ github.head_ref }}
       - name: Download local_env
         uses: actions/download-artifact@v2.0.9
         with:
