@@ -52,7 +52,9 @@ jobs:
           repository: ngeorgomanolis/workflows
           path: './'
           lfs: false
+      - name: copy from workflow branch to main
         run: | 
+          pwd
           cp ./examples/env/local.json .
       #- name: Download local_env
       #  uses: actions/download-artifact@v2.0.9
