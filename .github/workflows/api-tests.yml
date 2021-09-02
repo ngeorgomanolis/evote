@@ -16,21 +16,21 @@ jobs:
       - run: echo "event name is:" ${{ github.event_name }} 
       - run: echo "event type is:" ${{ github.event.action }}
       - run: echo "pull merged is:" ${{ github.event.pull_request.merged }} 
-      - name: Checkout the git branch
-        uses: actions/checkout@v2.3.4
-        with:
-          repository: ngeorgomanolis/workflows
-          path: './'
-          lfs: false
-      - name: Listing files/folders
-        run: ls -lr
-      - name: Upload tests/postman/env/local.json
-        uses: actions/upload-artifact@v2.2.3
-        with:
-          name: local_env
-          path: examples/env/local.json
-          if-no-files-found: error
-          retention-days: 1
+      #- name: Checkout the git branch
+      #  uses: actions/checkout@v2.3.4
+      #  with:
+      #    repository: ngeorgomanolis/workflows
+      #   path: './'
+      #    lfs: false
+      #- name: Listing files/folders
+      #  run: ls -lr
+      #- name: Upload tests/postman/env/local.json
+      #  uses: actions/upload-artifact@v2.2.3
+      #  with:
+      #    name: local_env
+      #    path: examples/env/local.json
+      #    if-no-files-found: error
+      #   retention-days: 1
   run-integration-tests:
     needs: get-env
     runs-on: ubuntu-20.04
@@ -46,12 +46,21 @@ jobs:
           scope: '@ngeorgomanolis'
       - name: install newman
         run: npm install -g newman
-      - name: Checking out main branch in workflow repository
-        uses: actions/checkout@v2
-      - name: Download local_env
-        uses: actions/download-artifact@v2.0.9
+      - name: Checkout the git branch
+        uses: actions/checkout@v2.3.4
         with:
-          name: local_env
+          repository: ngeorgomanolis/workflows
+          path: './'
+          lfs: false
+      - name: copy from workflow branch to main
+        run: | 
+          pwd
+          cp ./examples/env/local.json .
+      #- name: Download local_env
+      #  uses: actions/download-artifact@v2.0.9
+      #  with:
+      #    name: local_env
+      - uses: actions/checkout@v2
       - name: List folder files
         run:  | 
           ls -lr
